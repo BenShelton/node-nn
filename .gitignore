@@ -1,2 +1,5 @@
 .vscode
 node_modules
+**/mnist_test_10k.csv
+**/mnist_train_10k.csv
+**/mnist_train_60k.csv

@@ -15,7 +15,7 @@ const bot = new NeuralNetwork({
 
 console.log('Loading Data')
 const trainingData = csv(fs.readFileSync('examples/mnist-data/mnist_train_1k.csv'))
-const testingData = csv(fs.readFileSync('examples/mnist-data/mnist_test_1k.csv'))
+const testingData = csv(fs.readFileSync('examples/mnist-data/mnist_test_100.csv'))
 
 for (let epoch = 0; epoch < 100; epoch++) {
   console.log('Starting Training - Epoch ' + epoch)
