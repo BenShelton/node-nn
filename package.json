@@ -1,0 +1,26 @@
+{
+  "name": "node-nn",
+  "version": "1.0.0",
+  "description": "A simple neural network to run with Node.js",
+  "main": "index.js",
+  "scripts": {
+    "xor": "node examples/xor.js",
+    "mnist": "node examples/mnist.js",
+    "evolution": "node examples/evolution.js",
+    "test": "mocha",
+    "lint": "eslint *.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "csv-parse": "^2.0.0",
+    "eslint": "^4.16.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^5.0.0"
+  }
+}
