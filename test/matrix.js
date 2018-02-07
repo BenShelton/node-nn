@@ -1,7 +1,7 @@
 const { describe, beforeEach, it } = require('mocha')
 const assert = require('assert')
 
-const Matrix = require('../Matrix')
+const { Matrix } = require('../lib')
 
 describe('Matrix', () => {
   let m
