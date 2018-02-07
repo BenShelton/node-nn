@@ -2,7 +2,10 @@
   "name": "node-nn",
   "version": "1.0.0",
   "description": "A simple neural network to run with Node.js",
-  "main": "index.js",
+  "keywords": ["neural", "network", "neuroevolution"],
+  "repository" : "github:BenShelton/node-nn",
+  "bugs": { "url" : "https://github.com/BenShelton/node-nn/issues" },
+  "main": "lib/index.js",
   "scripts": {
     "xor": "node examples/xor.js",
     "mnist": "node examples/mnist.js",
@@ -10,8 +13,8 @@
     "test": "mocha",
     "lint": "eslint *.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Ben Jones <bensheltonjones@gmail.com>",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "csv-parse": "^2.0.0",
