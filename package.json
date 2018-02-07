@@ -9,7 +9,8 @@
   "scripts": {
     "xor": "node examples/xor.js",
     "mnist": "node examples/mnist.js",
-    "evolution": "node examples/evolution.js",
+    "xor-evo": "node examples/xor-evo.js",
+    "mnist-evo": "node examples/mnist-evo.js",
     "test": "mocha",
     "lint": "eslint *.js"
   },

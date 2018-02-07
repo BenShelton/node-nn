@@ -1,4 +1,5 @@
 # node-nn
+
 A simple neural network to run with Node.js.
 
 [![Codeship  Status for BenShelton/node-nn](https://app.codeship.com/projects/de87bd70-ee4b-0135-80c9-76500b92b2bd/status?branch=master)](https://app.codeship.com/projects/270896)
@@ -31,7 +32,8 @@ There are some examples setup for you to try using `npm run` or `yarn`:
 ``` bash
 yarn xor
 yarn mnist
-yarn evolution
+yarn xor-evo
+yarn mnist-evo
 ```
 
 If you want to create your own, then you can import the necessary files from the library:
@@ -46,6 +48,7 @@ Feel free to raise an issue or create a pull request. Contributions are always w
 
 ## TODO
 
+- [ ] Implement Batch Gradient Descent
 - [ ] Create documentation for creating your own
 - [ ] Update examples
 - [ ] Go through & comment on each stage of code

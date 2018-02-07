@@ -1,23 +1,21 @@
 const fs = require('fs')
 const csv = require('csv-parse/lib/sync')
 
-const { NeuralNetwork } = require('../lib')
+const { Matrix, NeuralNetwork } = require('../lib')
 
 const bot = new NeuralNetwork({
-  layerSizes: [784, 20, 10],
-  batchSize: 1,
-  learningRate: 0.2,
+  layerSizes: [784, 30, 10],
+  // batchSize: 1,
+  learningRate: 0.5,
   testFn: (outputs, targets) => targets.highest() === outputs.highest(),
-  logTests: false,
   trackTrainingSuccess: true
 })
-// const bot = NeuralNetwork.fromJSON(fs.readFileSync('examples/trained/mnist-bot.json'))
 
 console.log('Loading Data')
-const trainingData = csv(fs.readFileSync('examples/mnist-data/mnist_train_1k.csv'))
-const testingData = csv(fs.readFileSync('examples/mnist-data/mnist_test_100.csv'))
+const trainingData = csv(fs.readFileSync('examples/mnist-data/mnist_train_1k.csv')).map(parseLine)
+const testingData = csv(fs.readFileSync('examples/mnist-data/mnist_test_100.csv')).map(parseLine)
 
-for (let epoch = 0; epoch < 100; epoch++) {
+for (let epoch = 0; epoch < 30; epoch++) {
   console.log('Starting Training - Epoch ' + epoch)
   train()
   const endingMessage = bot.trackTrainingSuccess
@@ -29,26 +27,27 @@ for (let epoch = 0; epoch < 100; epoch++) {
   console.log(`Testing Complete, Accuracy: ${bot.successRate()}%`)
   console.log('-----------------')
 }
-console.log('Exporting bot to examples/mnistbot.json')
-fs.writeFileSync('examples/mnistbot.json', bot.toJSON())
+console.log('Exporting bot to examples/trained/mnist-bot.json')
+fs.writeFileSync('examples/trained/mnist-bot.json', bot.toJSON())
 console.log('Complete!')
+
+function parseLine (line) {
+  const answer = new Array(10).fill(0)
+  answer[+line[0]] = 1
+  return { inputs: Matrix.fromArray(line.slice(1)), targets: Matrix.fromArray(answer) }
+}
 
 function train () {
   let lines = 0
   trainingData.sort(() => Math.random() - 1)
   for (const line of trainingData) {
-    const answer = new Array(10).fill(0)
-    answer[+line[0]] = 1
-    bot.train(line.slice(1), answer)
-    lines++
-    if (lines % 1000 === 0) console.log(`${lines} lines trained`)
+    bot.train(line.inputs, line.targets)
+    if (++lines % 1000 === 0) console.log(`${lines} lines trained`)
   }
 }
 
 function test () {
   for (const line of testingData) {
-    const answer = new Array(10).fill(0)
-    answer[+line[0]] = 1
-    bot.test(line.slice(1), answer)
+    bot.test(line.inputs, line.targets)
   }
 }

@@ -8,7 +8,7 @@ const template = new NeuralNetwork({
 })
 
 const fitnessFn = bot => {
-  for (let i = 0; i < 150; i++) {
+  for (let i = 0; i < 100; i++) {
     const data = testData[Math.floor(Math.random() * testData.length)]
     bot.train(data.inputs, data.targets)
   }
@@ -21,9 +21,9 @@ const fitnessFn = bot => {
 
 const botnet = new NeuroEvolution({
   size: 250,
-  killRate: 0.85,
+  killRate: 0.8,
   mutationRate: 0.05,
-  mutationPower: 0.01,
+  mutationPower: 0.02,
   template,
   fitnessFn,
   logStats: true
@@ -40,4 +40,4 @@ for (let generation = 0; generation < 100; generation++) {
   botnet.runGeneration()
 }
 
-fs.writeFileSync('examples/trained/evolution-bot.json', botnet.best().toJSON())
+fs.writeFileSync('examples/trained/xor-evo-bot.json', botnet.best().toJSON())
