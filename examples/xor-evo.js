@@ -20,7 +20,7 @@ const fitnessFn = bot => {
 }
 
 const botnet = new NeuroEvolution({
-  size: 250,
+  size: 50,
   killRate: 0.8,
   mutationRate: 0.05,
   mutationPower: 0.02,
