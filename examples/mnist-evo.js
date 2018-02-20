@@ -37,13 +37,13 @@ const trainingData = csv(fs.readFileSync('examples/mnist-data/mnist_train_1k.csv
 const testingData = csv(fs.readFileSync('examples/mnist-data/mnist_test_100.csv')).map(parseLine)
 console.log('Data Loaded')
 
-for (let generation = 0; generation < 10; generation++) {
-  botnet.runGeneration()
-}
-
-console.log('Exporting bot to examples/trained/mnist-evo-bot.json')
-fs.writeFileSync('examples/trained/mnist-evo-bot.json', botnet.best().toJSON())
-console.log('Complete!')
+botnet.runGenerations(10)
+  .then(() => botnet.best())
+  .then(best => {
+    console.log('Exporting bot to examples/trained/mnist-evo-bot.json')
+    fs.writeFileSync('examples/trained/mnist-evo-bot.json', best.toJSON())
+    console.log('Complete!')
+  })
 
 function parseLine (line) {
   const answer = new Array(10).fill(0)

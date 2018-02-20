@@ -36,8 +36,8 @@ const testData = [
   { inputs: Matrix.fromArray([1, 1]), targets: Matrix.fromArray([0]) }
 ]
 
-for (let generation = 0; generation < 100; generation++) {
-  botnet.runGeneration()
-}
-
-fs.writeFileSync('examples/trained/xor-evo-bot.json', botnet.best().toJSON())
+botnet.runGenerations(100)
+  .then(() => botnet.best())
+  .then(best => {
+    fs.writeFileSync('examples/trained/xor-evo-bot.json', best.toJSON())
+  })
