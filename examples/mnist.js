@@ -4,10 +4,10 @@ const csv = require('csv-parse/lib/sync')
 const { Matrix, NeuralNetwork } = require('../lib')
 
 const bot = new NeuralNetwork({
-  layerSizes: [784, 30, 10],
-  // batchSize: 1,
-  learningRate: 0.5,
-  testFn: (outputs, targets) => targets.highest() === outputs.highest(),
+  layerSizes: [784, 64, 10],
+  batchSize: 1,
+  learningRate: 0.1,
+  testFn: (outputs, targets) => outputs.highest() === targets.highest(),
   trackTrainingSuccess: true
 })
 
@@ -39,7 +39,6 @@ function parseLine (line) {
 
 function train () {
   let lines = 0
-  trainingData.sort(() => Math.random() - 1)
   for (const line of trainingData) {
     bot.train(line.inputs, line.targets)
     if (++lines % 1000 === 0) console.log(`${lines} lines trained`)
