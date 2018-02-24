@@ -48,6 +48,10 @@ describe('Matrix', () => {
       const otherM = new Matrix(2, 4, [[2, 2, 2, 2], [4, 4, 4, 4]])
       assert.throws(() => m.addMatrix(otherM), /mismatch/)
     })
+    it('can find the index of the highest number', () => {
+      const highest = Matrix.fromArray([0, 0.1, 0.999, 0.3, 0.5, 0.01]).highest()
+      assert.equal(highest, 2)
+    })
   })
   describe('Static Methods', () => {
     it('can copy a matrix', () => {
@@ -92,10 +96,6 @@ describe('Matrix', () => {
       assert.equal(arrayM.data.length, 3)
       assert.equal(arrayM.data[0].length, 1)
       assert.deepEqual(arrayM.data, [[1], [2], [3]])
-    })
-    it('can find the index of the highest number', () => {
-      const highest = Matrix.fromArray([0, 0.1, 0.999, 0.3, 0.5, 0.01]).highest()
-      assert.equal(highest, 2)
     })
   })
 })
